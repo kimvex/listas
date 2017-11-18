@@ -1,0 +1,25 @@
+{
+  "name": "listas",
+  "version": "0.0.1",
+  "description": "API para agregar multiple listas y editarlas",
+  "main": "app.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "author": "Benjamin De la cruz Martinez",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.3",
+    "react": "^16.1.1"
+  },
+  "devDependencies": {
+    "ava": "^0.23.0",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0"
+  }
+}
