@@ -4,13 +4,16 @@
   "description": "API para agregar multiple listas y editarlas",
   "main": "app.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "start": "node app.js"
   },
   "author": "Benjamin De la cruz Martinez",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
+    "helmet": "^3.9.0",
     "mongoose": "^4.13.3",
     "react": "^16.1.1"
   },

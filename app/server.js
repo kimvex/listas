@@ -8,6 +8,8 @@
 // Modulo descargados
 const express = require('express');
 const parser = require('body-parser');
+const cors = require('cors');
+const helmet = require('helmet');
 
 // Modulos creados
 const router = require('./rutas/');
@@ -21,6 +23,8 @@ module.exports = function server() {
   app.use(parser.json());
   app.use(parser.urlencoded({ extended: true }));
   app.use(estaticos);
+  app.use(helmet());
+  app.use('/api', cors());
   app.use('/api', router);
 
   mongo()
