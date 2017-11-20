@@ -11,8 +11,9 @@ const { Listas, Items } = require('../models/db/schema');
 
 // Agregamos los id de nuevos Items a documento de la lista correspondiente
 function addItemToList(res, listId, itemId) {
-  Listas.update({ _id: listId }, { $push: { items: itemId } })
-    .populate('Items')
+  Listas.findByIdAndUpdate({ _id: listId }, { $push: { items: itemId } }, { new: true })
+    .lean()
+    .populate('items')
     .then((item) => {
       res.json({ item });
     })
@@ -31,7 +32,7 @@ Route.get('/listas', (sol, res) => {
 
 // Ruta para obtener una lista por id
 Route.get('/lista/:id', (sol, res) => {
-  const id = sol.body.id;
+  const id = sol.params.id;
 
   Listas.findById({ _id: id })
     .populate('items')
@@ -41,7 +42,7 @@ Route.get('/lista/:id', (sol, res) => {
       }
       return res.json({ list: 'La lista no existe' });
     })
-    .catch(error => res.json({ error }));
+    .catch(error => res.json({ error: 'La lista o id no existen' }));
 });
 
 // Ruta para crear una nueva lista
@@ -55,7 +56,13 @@ Route.post('/newList', (sol, res) => {
     name,
     description,
   })
-    .then(lists => res.json({ listas: lists }))
+    .then((lists) => {
+      Listas.find({})
+        .then((listas) => {
+          res.json({ lista: lists, listas });
+        })
+        .catch(error => res.json({ error }));
+    })
     .catch(error => res.json({ error }));
 });
 
@@ -67,14 +74,27 @@ Route.put('/updateList', (sol, res) => {
   } = sol.body;
 
   Listas.findOneAndUpdate({ _id: id }, list, { new: true })
+    .populate('items')
     .then((listUpdate) => {
       if (listUpdate) {
-        return res.json({ listUpdate });
+        Listas.find({})
+          .populate('items')
+          .then((listas) => {
+            if (listas) {
+              return res.json({ listUpdate, listas });
+            }
+
+            return res.json({ listUpdate });
+          })
+          .catch((error) => {
+            return res.json({ error });
+          });
+      } else {
+        return res.json({ listUpdate: 'La lista no existe' });
       }
 
-      return res.json({ listUpdate: 'La lista no existe' });
     })
-    .catch(error => res.json({ error }));
+    .catch(error => res.json({ listUpdate: 'La lista no existe o no es un Id valido' }));
 });
 
 // Ruta para eliminar una lista
@@ -84,9 +104,14 @@ Route.delete('/deleteList', (sol, res) => {
   Listas.findOneAndRemove({ _id: id })
     .then((data) => {
       if (data) {
-        return res.json({ data });
+        Listas.find({})
+          .then(lista => res.json({ data, listas: lista }))
+          .catch((error) => {
+            return res.json(error);
+          });
+      } else {
+        return res.json({ data: 'La lista no existe' });
       }
-      return res.json({ data: 'La lista no existe' });
     })
     .catch(error => res.json({ error }));
 });
@@ -102,7 +127,7 @@ Route.get('/items/:id', (sol, res) => {
 
     return res.json({ items: 'La lista no existe' });
   })
-    .catch(error => res.json({ error }));
+    .catch(error => res.json({ error: 'La lista o id no existe' }));
 });
 
 // Ruta para obtener un item por id
@@ -145,14 +170,33 @@ Route.put('/updateItem', (sol, res) => {
   const {
     id,
     item,
+    idList,
   } = sol.body;
-
+  
+  // Buscamos el item por id y lo actualizamos
   Items.findByIdAndUpdate({ _id: id }, item, { new: true })
     .then((updateItem) => {
+      // Buscamos que el valor no llegue vacio de lo contrario respondemos que no existe el item a actualizar
       if (updateItem) {
-        return res.json({ updateItem });
+        // Consultamos que llegue un id de lista para reponder todo un array y no solo el item actualizado
+        if (idList) {
+          Listas.findById({ _id: idList })
+            .populate('items')
+            .then((lista) => {
+              if (lista) {
+                return res.json({ updateItem: { item: updateItem, items: lista.items } });
+              }
+              return res.json({ updateItem: 'La lista a la que quieres agregar el item no existe' });
+            })
+            .catch((error) => {
+              return res.json({ error });
+            });
+        } else {
+          return res.json({ updateItem });
+        }
+      } else {
+        return res.json({ updateItem: 'El item no existe' });
       }
-      return res.json({ updateItem: 'El item no existe' });
     })
     .catch(error => res.json({ error }));
 });

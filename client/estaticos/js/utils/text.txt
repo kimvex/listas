@@ -1,0 +1,596 @@
+**Documentación del API**
+===========
+
+Dentro de esta documentación podrás encontrar la información de los **end-point** de la API.
+
+
+----------
+## Listas
+
+Para acceder a las listas solo debes hacer la consulta al siguiente **end-point**
+
+  `/api/listas`
+
+```
+{
+    "listas": [
+        {
+            "_id": "5a12f65240c37f029fd38b17",
+            "name": "Renta de casas",
+            "description": "Lista para publicar renta de casas",
+            "__v": 0,
+            "items": [
+                {
+                    "_id": "5a12f6b540c37f029fd38b19",
+                    "name": "Casa de tres pisos",
+                    "description": "Rento casa de tres pisos y patio grande",
+                    "__v": 0,
+                    "dateCreation": "2017-11-20T15:37:25.770Z",
+                    "price": 9000
+                }
+            ],
+            "date": "2017-11-20T15:35:46.986Z"
+        }
+    ]
+}
+```
+
+
+----------
+## Lista unica por Id
+
+Para obtener una lista especifica debemos hacer un request a la siguiente api usando como ultimo parametro el id de la lista que queremos buscar.
+
+`/api/lista/idLista`
+
+Metodo **GET**
+
+El retorno nos traerá la lista que pedimos de la siguiente forma.
+
+```
+{
+    "list": {
+        "_id": "5a12f65240c37f029fd38b17",
+        "name": "Renta de casas",
+        "description": "Lista para publicar renta de casas",
+        "__v": 0,
+        "items": [
+            {
+                "_id": "5a12f6b540c37f029fd38b19",
+                "name": "Casa de tres pisos",
+                "description": "Rento casa de tres pisos y patio grande",
+                "__v": 0,
+                "dateCreation": "2017-11-20T15:37:25.770Z",
+                "price": 9000
+            }
+        ],
+        "date": "2017-11-20T15:35:46.986Z"
+    }
+}
+```
+
+En caso de no existir, nos traerá un objeto de la siguiente forma.
+
+```
+{
+   "error":  "La lista o id no existen"
+}
+```
+
+----
+## Nueva lista
+
+Para crear una nueva lista debemos acceder al siguiente **end-point**
+
+`/api/newList`
+
+Metodo **POST**
+
+Los datos deben ser enviados de la siguiente forma:
+```
+{
+	"name": "Primer lista",
+	"description": "Esta es una lista"
+}
+```
+
+Nos retornara dos datos la *lista creada* y *listas existentes*
+
+```
+{
+    "lista": {
+        "__v": 0,
+        "name": "Tercera lista",
+        "description": "Esta es una tercera lista de prueba",
+        "_id": "5a130eb8c45b9a058f5273b3",
+        "items": [],
+        "date": "2017-11-20T17:19:52.028Z"
+    },
+    "listas": [
+        {
+            "_id": "5a12f65240c37f029fd38b17",
+            "name": "Renta de casas",
+            "description": "Lista para publicar renta de casas",
+            "__v": 0,
+            "items": [
+                "5a12f68240c37f029fd38b18",
+                "5a12f6b540c37f029fd38b19"
+            ],
+            "date": "2017-11-20T15:35:46.986Z"
+        },
+        {
+            "_id": "5a130eb8c45b9a058f5273b3",
+            "name": "Tercera lista",
+            "description": "Esta es una tercera lista de prueba",
+            "__v": 0,
+            "items": [],
+            "date": "2017-11-20T17:19:52.028Z"
+        }
+    ]
+}
+```
+
+----------
+## Actualizar lista
+
+Para actualizar el nombre y dato de una lista se debe acceder al siguiente **end-point**.
+
+`/api/updateList`
+
+Metodo **PUT**
+
+Los datos a enviar son los siguientes:
+
+ - **id**  *este es importante pues es el que hace referencia a la lista por actualizar*
+ - **name** *este dato lo agregas si quieres actualizar en caso de que no puedes omitirlo en objeto a enviar* 
+ - **description** *este dato lo agregas si quieres actualizar en caso de que no puedes omitirlo en objeto a enviar*
+
+```
+{
+	"id": "5a12a977c579e6305cd27be0",
+	"list": {
+        "name": "Nuevo nombre de la lista",
+ 		"description": "Lista actualizada"
+	}
+}
+```
+
+Los datos que nos retornara seran dos *listUpdate* y *listas*.
+
+ - **listUpdate** hace referencia a la lista actualizada
+ - **listas** trae todas las listas existentes
+
+``` js
+{
+    "listUpdate": {
+        "_id": "5a12a977c579e6305cd27be0",
+        "name": ":3",
+        "description": "Lista actualizada",
+        "__v": 0,
+        "items": [
+            {
+                "_id": "5a12a999c579e6305cd27be1",
+                "name": "3:)",
+                "description": "3:)",
+                "__v": 0,
+                "dateCreation": "2017-11-20T10:08:25.341Z",
+                "price": 1000
+            },
+            {
+                "_id": "5a12f70540c37f029fd38b1b",
+                "name": ":/",
+                "description": ":/",
+                "__v": 0,
+                "dateCreation": "2017-11-20T15:38:45.106Z",
+                "price": 1299
+            }
+        ],
+        "date": "2017-11-20T10:07:51.312Z"
+    },
+    "listas": [
+        {
+            "_id": "5a1238f55aa36119af6d6776",
+            "name": "Ventas de coches",
+            "description": "Lista para vender coches",
+            "__v": 0,
+            "items": [],
+            "date": "2017-11-20T02:07:49.690Z"
+        },
+        {
+            "_id": "5a12f65240c37f029fd38b17",
+            "name": "Renta de casas",
+            "description": "Lista para publicar renta de casas",
+            "__v": 0,
+            "items": [
+                {
+                    "_id": "5a12f6b540c37f029fd38b19",
+                    "name": "Casa de tres pisos",
+                    "description": "Rento casa de tres pisos y patio grande",
+                    "__v": 0,
+                    "dateCreation": "2017-11-20T15:37:25.770Z",
+                    "price": 9000
+                }
+            ],
+            "date": "2017-11-20T15:35:46.986Z"
+        }
+    ]
+}
+```
+
+En caso de no existir la lista nos retornara el siguiente objeto:
+```
+{
+    "listUpdate": "La lista no existe o no es un Id valido"
+}
+```
+
+----------
+## Eliminar
+
+Para eliminar una lista lo unico que debemos hacer es enviar el id de la lista a eliminar al siguiente **end-point**:
+ 
+ `/api/deleteList`
+
+Metodo **DELETE**
+ 
+```
+{
+	"id": "5a130eb8c45b9a058f5273b3"
+}
+```
+
+El retorno del request nos trae dos datos *data* y *listas*
+
+ - **data** Hace referencia a la lista eliminada
+ - **listas** nos trae el array de las litas existentes
+
+```
+{
+    "data": {
+        "_id": "5a130eb8c45b9a058f5273b3",
+        "name": "Tercera lista",
+        "description": "Esta es una tercera lista de prueba",
+        "__v": 0,
+        "items": [],
+        "date": "2017-11-20T17:19:52.028Z"
+    },
+    "listas": [
+        {
+            "_id": "5a1238f55aa36119af6d6776",
+            "name": "Ventas de coches",
+            "description": "Lista para vender coches",
+            "__v": 0,
+            "items": [],
+            "date": "2017-11-20T02:07:49.690Z"
+        },
+        {
+            "_id": "5a12a977c579e6305cd27be0",
+            "name": ":3",
+            "description": "Lista actualizada",
+            "__v": 0,
+            "items": [
+                "5a12a999c579e6305cd27be1",
+                "5a12f70540c37f029fd38b1b"
+            ],
+            "date": "2017-11-20T10:07:51.312Z"
+        },
+        {
+            "_id": "5a12f65240c37f029fd38b17",
+            "name": "Renta de casas",
+            "description": "Lista para publicar renta de casas",
+            "__v": 0,
+            "items": [
+                "5a12f68240c37f029fd38b18",
+                "5a12f6b540c37f029fd38b19"
+            ],
+            "date": "2017-11-20T15:35:46.986Z"
+        }
+    ]
+}
+```
+
+En caso de no existir la lista a eliminar nos retornara el siguiente objeto
+
+```
+{
+    "data": "La lista no existe"
+}
+```
+
+----------
+## Items
+
+Para obtener los **Items** de una lista los obtenemos del siguiente **end-point**
+
+ - **idList** hace referencia al id de la lista de la cual queremos obtener todos sus items
+
+`/api/items/idList`
+
+Metodo **GET**
+
+El resultado de esa consulta serial el siguiente.
+
+```
+{
+    "items": [
+        {
+            "_id": "5a12a999c579e6305cd27be1",
+            "name": "3:)",
+            "description": "3:)",
+            "dateCreation": "2017-11-20T10:08:25.341Z",
+            "price": 1000,
+            "__v": 0
+        },
+        {
+            "_id": "5a12f70540c37f029fd38b1b",
+            "name": ":/",
+            "description": ":/",
+            "dateCreation": "2017-11-20T15:38:45.106Z",
+            "price": 1299,
+            "__v": 0
+        }
+    ]
+}
+```
+
+En caso de no existir la lista nos traera el siguiente objeto.
+
+```
+{
+ "error": "La lista o id no existe"
+}
+```
+
+----------
+## Item unico
+
+Para obtener un solo item por medio de su id se debe hacer la consulta al siguiente **end-point**
+
+ - **idItem** hace referencia al id del item que queremos obtener
+
+`/api/item/idItem`
+
+Metodo **GET**
+
+Nos traera como resultado.
+
+```
+{
+    "item": {
+        "_id": "5a12f6b540c37f029fd38b19",
+        "name": "Casa de tres pisos",
+        "description": "Rento casa de tres pisos y patio grande",
+        "__v": 0,
+        "dateCreation": "2017-11-20T15:37:25.770Z",
+        "price": 9000
+    }
+}
+```
+
+En caso de no existir el item nos traera de regreso.
+
+```
+{
+    "item": "El item no existe"
+}
+```
+
+----------
+## Nuevo Item
+
+Para crear un nuevo **Item** debemos hacer un request al siguiente **end-point**
+
+`/api/newItems`
+
+Metodo **POST**
+
+Los siguientes datos deben ser enviados.
+
+ - **id** hace referencia al id de la lista a la que se le agregara este item
+ - **item** son los parametros del item a crear
+	 - **name** nombre del item
+	 - **description** descripcion del item
+	 - **price** precio del item.
+
+```
+{
+	"id": "5a12f65240c37f029fd38b17",
+	"item": {
+		"name": "Casa de dos pisos",
+		"description": "Vendo casa de dos pisos y patio grande",
+		"price": 1400000
+	}
+}
+```
+
+Nos retornara la lista de items existentes de esa lista
+
+```
+{
+    "item": {
+        "_id": "5a12f65240c37f029fd38b17",
+        "name": "Renta de casas",
+        "description": "Lista para publicar renta de casas",
+        "items": [
+            {
+                "_id": "5a12f6b540c37f029fd38b19",
+                "name": "Casa de tres pisos",
+                "description": "Rento casa de tres pisos y patio grande",
+                "dateCreation": "2017-11-20T15:37:25.770Z",
+                "price": 9000,
+                "__v": 0
+            },
+            {
+                "_id": "5a13220fe032b907d4e8a9bf",
+                "name": "Casa de dos pisos",
+                "description": "Vendo casa de dos pisos y patio grande",
+                "dateCreation": "2017-11-20T18:42:23.613Z",
+                "price": 1400000,
+                "__v": 0
+            }
+        ],
+        "date": "2017-11-20T15:35:46.986Z",
+        "__v": 0
+    }
+}
+```
+
+En caso de no existir la lista nos retornara lo siguiente.
+
+```
+{
+ "error": "La lista no existe"
+}
+```
+
+----------
+## Actualizar Item
+
+Para actualizar un item debemos de hacer request al siguiente **end-point**
+
+`/api/updateItem`
+
+Metodo **PUT**
+
+Los datos que se deben enviar son los siguientes
+
+ - **id** hace referencia al id del Item
+ - **item** es el objeto del item que se actualizara
+	 - **name** es el nuevo nombre del item - puede no agregar este parametro si no quiere actualizarlo
+	 - **description** es la nueva descripción del item - puede no agregar este parametro si no quiere actualizarlo
+	 - **price** es el nuevo nombre del item - puede no agregar este parametro si no quiere actualizarlo
+
+```
+{
+	"id": "5a12f6b540c37f029fd38b19",
+	"item": {
+    "name": "Vendo casa pequeña",
+    "description": "Casa de un piso con tres cuartos",
+		"price": 2300
+	}
+}
+```
+
+Esto nos traerá del vuelta el Item actualizado.
+
+```
+{
+    "updateItem": {
+        "_id": "5a12f6b540c37f029fd38b19",
+        "name": "Vendo casa pequeña",
+        "description": "Casa de un piso con tres cuartos",
+        "__v": 0,
+        "dateCreation": "2017-11-20T15:37:25.770Z",
+        "price": 2300
+    }
+}
+```
+
+Si queremos obtener tambien todos los items de la lista a la que pertenece el item se debe agregar un campo más al request.
+
+```
+{
+	"id": "5a12f6b540c37f029fd38b19",
+	"item": {
+    "name": "Vendo casa pequeña",
+    "description": "Casa de un piso con tres cuartos",
+		"price": 2300
+	},
+	"idList": "5a12f65240c37f029fd38b17"
+}
+```
+
+El resultado de esto seria lo siguiente
+
+ - **updateItem** el item actualizado
+ - **items** los items de la lista elegida
+
+```
+{
+    "updateItem": {
+        "item": {
+            "_id": "5a12f6b540c37f029fd38b19",
+            "name": "Vendo casa pequeña :)",
+            "description": "Casa de un piso con tres cuartos",
+            "__v": 0,
+            "dateCreation": "2017-11-20T15:37:25.770Z",
+            "price": 2300
+        },
+        "items": [
+            {
+                "_id": "5a12f6b540c37f029fd38b19",
+                "name": "Vendo casa pequeña :)",
+                "description": "Casa de un piso con tres cuartos",
+                "__v": 0,
+                "dateCreation": "2017-11-20T15:37:25.770Z",
+                "price": 2300
+            },
+            {
+                "_id": "5a13220fe032b907d4e8a9bf",
+                "name": "Casa de dos pisos",
+                "description": "Vendo casa de dos pisos y patio grande",
+                "__v": 0,
+                "dateCreation": "2017-11-20T18:42:23.613Z",
+                "price": 1400000
+            }
+        ]
+    }
+}
+```
+
+En caso de no exitir el item a actualizar tendremos el siguiente objeto de retorno.
+
+```
+{
+ "updateItem": "El item no existe"
+}
+```
+
+En el caso de la lista nos retornaria lo siguiente.
+
+```
+{
+ "updateItem": "La lista a la que quieres agregar el item no existe"
+}
+```
+
+----------
+## Eliminar Item
+
+Para eliminar un **item** debemos hacer un request al siguiente **end-point**
+
+`/api/deleteItem`
+
+Metodo **DELETE**
+
+El dato que debemos enviar es el *id* de la siguiente forma
+
+```
+{
+	"id": "5a12a9c3c579e6305cd27be4"
+}
+```
+
+Obtendríamos como respuesta el item que fue eliminado.
+
+```
+{
+    "data": {
+        "_id": "5a12f6e840c37f029fd38b1a",
+        "name": "Chomin",
+        "description": "De la cruz",
+        "__v": 0,
+        "dateCreation": "2017-11-20T15:38:16.120Z",
+        "price": 100000000000
+    }
+}
+```
+
+En caso de no existir el item nos retornaria lo siguiente
+```
+{
+    "data": "El item no existe"
+}
+```
+
+Creado por [Benjamin de la cruz Martinez](https://benjamin.kimvex.com)

@@ -1,0 +1,292 @@
+html, 
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  background: #ffffff;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+.section-container{
+  display: flex;
+  height: 100%;
+}
+
+.contenedor{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: #294661;
+}
+
+.menu{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: white;
+  border-bottom: 1px solid #ececed;
+  box-shadow: 3px 5px 8px 0 rgba(41,71,98,0.1);
+}
+
+.menu .lista-menu{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+}
+
+.menu .titulo-menu{
+  padding: 1rem;
+  color: white;
+  border-right: 1px solid #9daab2;
+  background: #000;
+  font-weight: 800;
+  font-size: 20px;
+  font-family: 'Indie Flower', cursive;
+}
+
+.menu .lista-menu a {
+  text-decoration: none;
+  transition: 1s;
+  color: #9daab2;
+  font-family: 'Nixie One', cursive;
+}
+
+.menu .lista-menu a:hover{
+  transition: 1s;
+  background: #000;
+  color: white;
+}
+
+.menu .lista-menu a li {
+  list-style: none;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.contenido-div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 1rem 0rem 2rem;
+  height: 100%;
+}
+
+.contenido-div .contenedor-formulario {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ececed;
+  text-align: center;
+  padding-top: 0.5rem;
+  height: 95%;
+}
+
+.contenido-div .contenedor-formulario .formulario{
+  width: 100%;
+}
+
+.contenido-div .contenedor-formulario .formulario .campo-nombre{
+  width: 95%;
+  border: 1px solid #ececed;
+  padding: 0.5rem 0rem 0.5rem 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.contenido-div .contenedor-formulario .formulario .campo-descripton{
+  width: 95%;
+  border: 1px solid #ececed;
+  padding: 0.5rem 0rem 0.5rem 0.5rem;
+  resize: none;
+  height: 200px;
+}
+
+.contenido-div .contenedor-formulario .formulario .boton-agregar{
+  width: 80%;
+  margin-left: 10%;
+  font-size: 1.5rem;
+  border: 1px solid #ececed;
+  background: #ffffff;
+  cursor: pointer;
+  transition: 500ms;
+}
+
+.contenido-div .contenedor-formulario .formulario .boton-agregar:hover{
+  background: black;
+  color: white;
+  transition: 500ms;
+}
+
+.contenido-div .contenedor-lista, .conetendor-items, .conetendor-items{
+  margin-left: 0.5rem;
+  border: 1px solid #ececed;
+  height: 96.5%;
+  width: 25%;
+  overflow: auto;
+}
+
+.lista-ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.conetendor-items .lista-ul .titulo-lista-li{
+  flex-direction: column;
+  text-align: center;
+  margin: 0.5rem 0rem;
+  font-weight: 800;
+  top: 0;
+  width: 100%;
+}
+
+.conetendor-items .informacion-titulo-y-crearitem{
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 0rem;
+  height: 20%;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+.boton-crear-item{
+  width: 60%;
+  padding: 0.5rem;
+  border: 1px solid #ececed;
+  background: white;
+  cursor: pointer;
+  border-bottom: 10px solid #b1afaf;
+  transition: 200ms;
+  outline: 0;
+}
+
+.boton-crear-item:active{
+  transition: 200ms;
+  border-top: 10px solid #b1afaf;
+  border-bottom: 1px solid #b1afaf;
+}
+
+.lista-ul .lista-item-unica{
+  margin: 0.5rem;
+  border: 1px solid #e2e2e2;
+  border-radius: 2px;
+  padding: 0.5rem;
+  text-align: center;
+  box-shadow: 3px 5px 8px 0 rgba(41,71,98,0.1);
+}
+
+.lista-ul .lista-item-unica .lista-nav, footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: 400;
+  font-family: 'Nixie One', cursive;
+  border-top: 1px solid #ececed;
+}
+
+.lista-ul .lista-item-unica .lista-nav span{
+  cursor: pointer;
+  font-family: 'Nixie One', cursive;
+}
+
+.lista-ul .lista-item-unica .lista-nav span:hover{
+  color: #e2e2e2;
+}
+
+.conetendor-items .lista-item-unica{
+  margin: 0.5rem;
+  border: 1px solid #ececed;
+  border-radius: 2px;
+  padding: 0.5rem;
+  text-align: center;
+  box-shadow: 3px 5px 8px 0 rgba(41,71,98,0.1);
+}
+.conetendor-items .lista-item-unica .lista-nav, footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: 400;
+  font-family: 'Nixie One', cursive;
+  border-top: 1px solid #ececed;
+}
+
+.conetendor-items .lista-item-unica .lista-nav span:hover{
+  color: #e2e2e2;
+}
+
+.modal-new-item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-new-item .modal-new-item-i{
+  width: 50%;
+  height: 50%;
+  background: #ffffff;
+}
+
+.modal-new-item .modal-new-item-i .modal-new-item-i-form {
+  width: 90%;
+  margin: 5% 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-new-item .modal-new-item-i .modal-new-item-i-form .campo-nombre{
+  width: 95%;
+  border: 1px solid #ececed;
+  padding: 0.5rem 0rem 0.5rem 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-new-item .modal-new-item-i .modal-new-item-i-form .campo-descripton{
+  width: 95%;
+  border: 1px solid #ececed;
+  padding: 0.5rem 0rem 0.5rem 0.5rem;
+  resize: none;
+  height: 100px;
+}
+
+.modal-new-item .modal-new-item-i .modal-new-item-i-form .boton-agregar{
+  width: 80%;
+  margin-left: 10%;
+  font-size: 1.5rem;
+  border: 1px solid #ececed;
+  background: #ffffff;
+  cursor: pointer;
+  transition: 500ms;
+}
+
+.modal-new-item .modal-new-item-i .modal-new-item-i-form .boton-agregar:hover{
+  background: black;
+  color: white;
+  transition: 500ms;
+}
+
+.markdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.markdown .markdown-text{
+  width: 70%;
+}

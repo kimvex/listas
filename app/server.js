@@ -12,7 +12,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 // Modulos creados
-const router = require('./rutas/');
+const api = require('./rutas/apis');
+const vistas = require('./rutas/vistas');
 const { estaticos } = require('./utils/');
 const mongo = require('./controllers/mongodb');
 
@@ -24,8 +25,9 @@ module.exports = function server() {
   app.use(parser.urlencoded({ extended: true }));
   app.use(estaticos);
   app.use(helmet());
+  app.use('/', vistas);
   app.use('/api', cors());
-  app.use('/api', router);
+  app.use('/api', api);
 
   mongo()
     .then(res => console.log(res))
