@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Archivo encargado de hacer los request en la API
+ */
+
 import axios from 'axios';
 
 module.exports = {

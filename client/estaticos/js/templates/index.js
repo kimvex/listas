@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Archivo para inicio
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';

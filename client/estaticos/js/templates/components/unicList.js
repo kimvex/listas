@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Archivo para desplegar una por una las listas
+ */
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
@@ -8,6 +12,7 @@ import moment from 'moment';
 import { deleteList, loadItems } from '../../utils/request';
 import { actualizacion } from '../../redux/actions';
 
+// Funcion para actualizar los estados en Redux
 function mapDispatchToProps(dispatch) {
   return {
     updateStates(info) {

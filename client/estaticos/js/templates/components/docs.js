@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Cuerpo para la documentacion
+ */
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 

@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * Archivo que contiene el formulario para crear
+ * nuevas listas.
+ */
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
@@ -7,6 +12,7 @@ import { connect } from 'react-redux';
 import { newList } from '../../utils/request';
 import { actualizacion } from '../../redux/actions';
 
+// Funciones para los estados de Redux
 function mapDispatchToProps(dispatch) {
   return {
     updateStates(info) {

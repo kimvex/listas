@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Archivo que encajona las opciones de la vista para el usuario
+ */
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';

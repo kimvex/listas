@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Archivo para mostrar los Items uno por uno en la lista
+ */
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
@@ -8,6 +12,7 @@ import moment from 'moment';
 import { deleteItem, loadItem } from '../../utils/request';
 import { actualizacion } from '../../redux/actions';
 
+// Funciones encargadas de los estados en Redux
 function mapDispatchToProps(dispatch){
   return {
     updateStates(info) {

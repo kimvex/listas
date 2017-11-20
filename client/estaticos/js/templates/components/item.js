@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Archivo que muestra el item idividual
+ */
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
@@ -8,6 +12,7 @@ import moment from 'moment';
 import { deleteItem } from '../../utils/request';
 import { actualizacion } from '../../redux/actions';
 
+// Funciones para los estados de Redux
 function mapDispatchToProps(dispatch){
   return {
     updateStates(info) {
@@ -43,6 +48,7 @@ class Item extends Component{
       })
   }
 
+  // Metodo para actualizar los estados y abrir el modal
   mostrarModal = () => this.props.updateStates({
     idItem: this.props.item._id,
     nameItem: this.props.item.name,
@@ -53,7 +59,6 @@ class Item extends Component{
   });
 
   render(){
-    console.log(this.props.item)
     return (
       <div className='conetendor-items'>
         <div className='lista-item-unica'>

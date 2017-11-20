@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Modal para agregar, editar items y listas
+ */
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
@@ -8,6 +12,7 @@ import { connect } from 'react-redux';
 import { createItem, updateItem, updateList } from '../../utils/request';
 import { actualizacion } from '../../redux/actions';
 
+// funciones para los estados de Redux
 function mapDispatchToProps(dispatch){
   return {
     updateStates(info) {
@@ -64,7 +69,6 @@ class ModalNewItem extends Component {
       price: this.props.priceItem,
     }
 
-    console.log(this.props.idItem, item, this.props.idList)
     updateItem(this.props.idItem, item, this.props.idList)
       .then(newItem => {
         this.props.updateStates({ 
@@ -107,6 +111,7 @@ class ModalNewItem extends Component {
 
   cerrar = () => this.props.updateStates({ showModal: false });
 
+  // Metodo para elegir que request se hara dependiendo de donde se abrio el modal: Item o Lista
   elecctionRequest = () => {
     if (this.props.editItem) {
       this.props.updateStates({ valorButton: 'Actualizar articulo' });
@@ -120,6 +125,7 @@ class ModalNewItem extends Component {
     return this.crearItem;
   }
 
+  // Metodo para mostrar el input de precio
   precioShow = () => {
     if (!this.props.editList) {
       return <input onChange={(e) => this.props.updateStates({ priceItem: e.target.value }) } className='campo-nombre' placeholder='Precio' type='number' name='price' value={this.props.priceItem} required />;

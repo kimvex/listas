@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Archivo para desplegar las listas.
+ */
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';

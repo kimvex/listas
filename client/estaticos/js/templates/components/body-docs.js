@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Cuerpo para la documentacion en markdown.
+ */
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Remarkable from 'remarkable';
@@ -19,6 +23,7 @@ class Body extends Component {
       });
   }
 
+  // Metodo para crear el text a markdown
   textMarkDown = () => {
     const md = new Remarkable();
     return {
